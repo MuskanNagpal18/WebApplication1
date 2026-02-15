@@ -26,6 +26,9 @@
             @Html.DisplayNameFor(model => model.MedicineName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.MedicineCompany)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Stock)
         </th>
         <th>
@@ -46,6 +49,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.MedicineName)
             </td>
+            <td>@item.MedicineCompany</td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Stock)
             </td>

@@ -145,6 +145,14 @@
     <Compile Include="Migrations\202602151106512_UpdateDatabaseStructure.Designer.cs">
       <DependentUpon>202602151106512_UpdateDatabaseStructure.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202602151334582_AddMedicineCompany.cs" />
+    <Compile Include="Migrations\202602151334582_AddMedicineCompany.Designer.cs">
+      <DependentUpon>202602151334582_AddMedicineCompany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602151336216_AddMedicineCompany1.cs" />
+    <Compile Include="Migrations\202602151336216_AddMedicineCompany1.Designer.cs">
+      <DependentUpon>202602151336216_AddMedicineCompany1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Medicine.cs" />
@@ -258,6 +266,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202602151106512_UpdateDatabaseStructure.resx">
       <DependentUpon>202602151106512_UpdateDatabaseStructure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602151334582_AddMedicineCompany.resx">
+      <DependentUpon>202602151334582_AddMedicineCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602151336216_AddMedicineCompany1.resx">
+      <DependentUpon>202602151336216_AddMedicineCompany1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
