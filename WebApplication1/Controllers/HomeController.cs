@@ -26,8 +26,6 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        // NEW DASHBOARD ACTION
-        // NEW DASHBOARD ACTION
         public ActionResult Dashboard()
         {
             ViewBag.TotalUsers = db.Users.Count();
@@ -37,4 +35,4 @@ namespace WebApplication1.Controllers
             return View();
         }
     }
-    }
+}
