@@ -88,7 +88,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MedicineId,MedicineName,Stock,Price,Available,PharmacyId")] Medicine medicine)
+        public ActionResult Edit([Bind(Include = "MedicineId,MedicineName,MedicineCompany,Stock,Price,Available,PharmacyId")] Medicine medicine)
         {
             if (ModelState.IsValid)
             {
