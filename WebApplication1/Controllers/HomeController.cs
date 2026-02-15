@@ -7,12 +7,10 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult 
+        Index()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-
-            var users = db.Users.ToList();
-
+      
             return View();
         }
 

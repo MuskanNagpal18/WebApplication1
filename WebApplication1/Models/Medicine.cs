@@ -7,6 +7,9 @@ namespace WebApplication1.Models
 
         public string MedicineName { get; set; }
 
+        public string MedicineCompany { get; set; }
+
+
         public int Stock { get; set; }
 
         public decimal Price { get; set; }
