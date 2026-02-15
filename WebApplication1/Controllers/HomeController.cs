@@ -7,12 +7,10 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-
-            var users = db.Users.ToList();
-
             return View();
         }
 
@@ -27,5 +25,16 @@ namespace WebApplication1.Controllers
             ViewBag.Message = "Your contact page.";
             return View();
         }
+
+        // NEW DASHBOARD ACTION
+        // NEW DASHBOARD ACTION
+        public ActionResult Dashboard()
+        {
+            ViewBag.TotalUsers = db.Users.Count();
+            ViewBag.TotalMedicines = db.Medicines.Count();
+            ViewBag.LowStock = db.Medicines.Count(m => m.Stock < 10);
+
+            return View();
+        }
     }
-}
+    }
