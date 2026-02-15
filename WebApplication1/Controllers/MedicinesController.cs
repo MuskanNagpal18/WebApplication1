@@ -15,13 +15,15 @@ namespace WebApplication1.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Medicines
-        public ActionResult Index(string search)
+        public ActionResult Index(string searchString)
         {
             var medicines = db.Medicines.AsQueryable();
 
-            if (!string.IsNullOrEmpty(search))
+            if (!string.IsNullOrEmpty(searchString))
             {
-                medicines = medicines.Where(m => m.MedicineName.Contains(search));
+                medicines = medicines.Where(m =>
+                m.MedicineName.Contains(searchString) ||
+                m.MedicineName.Contains(searchString));
             }
 
             return View(medicines.ToList());
