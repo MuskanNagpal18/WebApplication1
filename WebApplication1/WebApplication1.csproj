@@ -133,6 +133,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202602141919594_InitialCreate.cs" />
+    <Compile Include="Migrations\202602141919594_InitialCreate.Designer.cs">
+      <DependentUpon>202602141919594_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602151059486_UpdateModel.cs" />
+    <Compile Include="Migrations\202602151059486_UpdateModel.Designer.cs">
+      <DependentUpon>202602151059486_UpdateModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602151106512_UpdateDatabaseStructure.cs" />
+    <Compile Include="Migrations\202602151106512_UpdateDatabaseStructure.Designer.cs">
+      <DependentUpon>202602151106512_UpdateDatabaseStructure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Medicine.cs" />
     <Compile Include="Models\UserMedicine.cs" />
@@ -231,6 +244,17 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202602141919594_InitialCreate.resx">
+      <DependentUpon>202602141919594_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602151059486_UpdateModel.resx">
+      <DependentUpon>202602151059486_UpdateModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602151106512_UpdateDatabaseStructure.resx">
+      <DependentUpon>202602151106512_UpdateDatabaseStructure.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
