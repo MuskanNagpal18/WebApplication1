@@ -1,0 +1,29 @@
+﻿@model WebApplication1.Models.User
+
+<h2>Register</h2>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+}
+
+@using (Html.BeginForm())
+{
+    <div>
+        <label>Name</label><br />
+        @Html.TextBoxFor(m => m.Name)
+    </div>
+
+    <div>
+        <label>Email</label><br />
+        @Html.TextBoxFor(m => m.Email)
+    </div>
+
+    <div>
+        <label>Password</label><br />
+        @Html.TextBoxFor(m => m.PasswordHash)
+    </div>
+
+    <br />
+    <button type="submit">Register</button>
+}

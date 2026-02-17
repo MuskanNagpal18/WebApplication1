@@ -133,6 +133,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202602121739140_InitialCreate.cs" />
+    <Compile Include="Migrations\202602121739140_InitialCreate.Designer.cs">
+      <DependentUpon>202602121739140_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602151052359_UpdateModel.cs" />
+    <Compile Include="Migrations\202602151052359_UpdateModel.Designer.cs">
+      <DependentUpon>202602151052359_UpdateModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602151550204_UpdateModel1.cs" />
+    <Compile Include="Migrations\202602151550204_UpdateModel1.Designer.cs">
+      <DependentUpon>202602151550204_UpdateModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602151802447_FixModel.cs" />
+    <Compile Include="Migrations\202602151802447_FixModel.Designer.cs">
+      <DependentUpon>202602151802447_FixModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602151803126_FixModel1.cs" />
+    <Compile Include="Migrations\202602151803126_FixModel1.Designer.cs">
+      <DependentUpon>202602151803126_FixModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Medicine.cs" />
     <Compile Include="Models\UserMedicine.cs" />
@@ -201,6 +222,8 @@
     <Content Include="Views\Medicines\Edit.cshtml" />
     <Content Include="Views\Medicines\Index.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Users\login.cshtml" />
+    <Content Include="Views\Users\register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -231,6 +254,23 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202602121739140_InitialCreate.resx">
+      <DependentUpon>202602121739140_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602151052359_UpdateModel.resx">
+      <DependentUpon>202602151052359_UpdateModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602151550204_UpdateModel1.resx">
+      <DependentUpon>202602151550204_UpdateModel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602151802447_FixModel.resx">
+      <DependentUpon>202602151802447_FixModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602151803126_FixModel1.resx">
+      <DependentUpon>202602151803126_FixModel1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
