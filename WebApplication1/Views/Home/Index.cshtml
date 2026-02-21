@@ -2,57 +2,34 @@
     ViewBag.Title = "Home";
 }
 
-<main class="container mt-4">
+<div class="text-center mt-5">
+    <h1>Medicine Tracker & Online Pharmacy System</h1>
+    <p class="lead">
+        Track medicines, manage stock, and order easily.
+    </p>
 
-    <!-- HERO SECTION -->
-    <section class="text-center mb-5">
-        <h1 class="display-4">Medicine Management System</h1>
-        <p class="lead">
-            A simple and efficient system to manage medicines, stock, and availability.
-        </p>
-    </section>
+    <br />
 
-    <!-- ABOUT -->
-    <section class="mb-4">
-        <h2>About the System</h2>
-        <p>
-            The Medicine Management System is a web-based application designed to help
-            manage medicine details, stock levels, and availability efficiently.
-            It simplifies medicine tracking for administrators and users.
-        </p>
-    </section>
+    @if (Session["UserId"] == null)
+    {
+        <a href="@Url.Action("Login", "Account")" class="btn btn-primary btn-lg">
+            Login
+        </a>
 
-    <!-- FEATURES -->
-    <section class="mb-4">
-        <h2>Key Features</h2>
-        <ul>
-            <li>Add, update, and delete medicines</li>
-            <li>Search medicines easily</li>
-            <li>Low stock alerts</li>
-            <li>Dashboard with summary statistics</li>
-            <li>Secure and user-friendly interface</li>
-        </ul>
-    </section>
+        <a href="@Url.Action("Register", "Account")" class="btn btn-success btn-lg">
+            Register
+        </a>
+    }
+    else
+    {
+        <h4>Welcome, @Session["Username"]</h4>
 
-    <!-- TECHNOLOGIES -->
-    <section class="mb-4">
-        <h2>Technologies Used</h2>
-        <ul>
-            <li>ASP.NET MVC</li>
-            <li>C#</li>
-            <li>Entity Framework</li>
-            <li>SQL Server</li>
-            <li>Bootstrap</li>
-        </ul>
-    </section>
+        <a href="@Url.Action("Dashboard", "Home")" class="btn btn-info">
+            Go to Dashboard
+        </a>
 
-    <!-- OBJECTIVE -->
-    <section class="mb-4">
-        <h2>Project Objective</h2>
-        <p>
-            The objective of this project is to provide a reliable and efficient solution
-            for managing medicine inventory, reducing manual effort, and improving accuracy.
-        </p>
-    </section>
-
-</main>
+        <a href="@Url.Action("Logout", "Account")" class="btn btn-danger">
+            Logout
+        </a>
+    }
+</div>

@@ -28,12 +28,36 @@ namespace WebApplication1.Controllers
 
         public ActionResult Dashboard()
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             ViewBag.TotalUsers = db.Users.Count();
             ViewBag.TotalMedicines = db.Medicines.Count();
             ViewBag.LowStock = db.Medicines.Count(m => m.Stock < 10);
 
             return View();
         }
+
+        public ActionResult Services()
+        {
+            return View();
+        }
+
+        public ActionResult Features()
+        {
+            return View();
+        }
+
+        public ActionResult Privacy()
+        {
+            return View();
+        }
+
+        public ActionResult AdminInfo()
+        {
+            return View();
+        }
+
     }
 }
-}   
