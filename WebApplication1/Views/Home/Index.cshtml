@@ -2,51 +2,57 @@
     ViewBag.Title = "Home";
 }
 
-<h2>Welcome</h2>
+<main class="container mt-4">
 
-<!-- ✅ Messages -->
-@if (TempData["Error"] != null)
-{
-    <div style="color:red; margin-bottom:10px;">
-        @TempData["Error"]
-    </div>
-}
+    <!-- HERO SECTION -->
+    <section class="text-center mb-5">
+        <h1 class="display-4">Medicine Management System</h1>
+        <p class="lead">
+            A simple and efficient system to manage medicines, stock, and availability.
+        </p>
+    </section>
 
-@if (TempData["Success"] != null)
-{
-    <div style="color:green; margin-bottom:10px;">
-        @TempData["Success"]
-    </div>
-}
+    <!-- ABOUT -->
+    <section class="mb-4">
+        <h2>About the System</h2>
+        <p>
+            The Medicine Management System is a web-based application designed to help
+            manage medicine details, stock levels, and availability efficiently.
+            It simplifies medicine tracking for administrators and users.
+        </p>
+    </section>
 
-@if (Session["User"] != null)
-{
-    <p>Hello @Session["User"]</p>
-    <a href="@Url.Action("Logout","Account")">Logout</a>
-}
-else
-{
-    <div style="display:flex; gap:50px;">
+    <!-- FEATURES -->
+    <section class="mb-4">
+        <h2>Key Features</h2>
+        <ul>
+            <li>Add, update, and delete medicines</li>
+            <li>Search medicines easily</li>
+            <li>Low stock alerts</li>
+            <li>Dashboard with summary statistics</li>
+            <li>Secure and user-friendly interface</li>
+        </ul>
+    </section>
 
-        <!-- LOGIN -->
-        <div>
-            <h3>Login</h3>
-            <form method="post" action="@Url.Action("Login","Account")">
-                <input type="text" name="username" placeholder="Username" required /><br /><br />
-                <input type="password" name="password" placeholder="Password" required /><br /><br />
-                <button type="submit">Login</button>
-            </form>
-        </div>
+    <!-- TECHNOLOGIES -->
+    <section class="mb-4">
+        <h2>Technologies Used</h2>
+        <ul>
+            <li>ASP.NET MVC</li>
+            <li>C#</li>
+            <li>Entity Framework</li>
+            <li>SQL Server</li>
+            <li>Bootstrap</li>
+        </ul>
+    </section>
 
-        <!-- REGISTER -->
-        <div>
-            <h3>Register</h3>
-            <form method="post" action="@Url.Action("Register","Account")">
-                <input type="text" name="username" placeholder="Username" required /><br /><br />
-                <input type="password" name="password" placeholder="Password" required /><br /><br />
-                <button type="submit">Register</button>
-            </form>
-        </div>
+    <!-- OBJECTIVE -->
+    <section class="mb-4">
+        <h2>Project Objective</h2>
+        <p>
+            The objective of this project is to provide a reliable and efficient solution
+            for managing medicine inventory, reducing manual effort, and improving accuracy.
+        </p>
+    </section>
 
-    </div>
-}
+</main>

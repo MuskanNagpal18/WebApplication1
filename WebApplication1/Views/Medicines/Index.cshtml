@@ -9,10 +9,24 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("Index", "Medicines", FormMethod.Get))
+{
+    <div class="input-group mb-3">
+        @Html.TextBox("searchString", null, new
+        {
+            @class = "form-control",
+            placeholder = "Search medicine..."
+        })
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+}
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.MedicineName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicineCompany)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Stock)
@@ -29,29 +43,32 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MedicineName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Available)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PharmacyId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MedicineId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MedicineId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MedicineId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr class="@(item.Stock < 10 ? "table-danger" : "")">
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicineName)
+            </td>
+            <td>@item.MedicineCompany</td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Available)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PharmacyId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MedicineId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MedicineId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MedicineId })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -128,7 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MedicinesController.cs" />
+    <Compile Include="Controllers\MedicineController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -152,6 +152,14 @@
     <Compile Include="Migrations\202602151803126_FixModel1.cs" />
     <Compile Include="Migrations\202602151803126_FixModel1.Designer.cs">
       <DependentUpon>202602151803126_FixModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602191803454_UpdateModels.cs" />
+    <Compile Include="Migrations\202602191803454_UpdateModels.Designer.cs">
+      <DependentUpon>202602191803454_UpdateModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602191804219_UpdateModels1.cs" />
+    <Compile Include="Migrations\202602191804219_UpdateModels1.Designer.cs">
+      <DependentUpon>202602191804219_UpdateModels1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -224,6 +232,10 @@
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Users\login.cshtml" />
     <Content Include="Views\Users\register.cshtml" />
+    <Content Include="Views\Home\AdminInfo.cshtml" />
+    <Content Include="Views\Home\Features.cshtml" />
+    <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Home\Services.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -270,6 +282,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202602151803126_FixModel1.resx">
       <DependentUpon>202602151803126_FixModel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602191803454_UpdateModels.resx">
+      <DependentUpon>202602191803454_UpdateModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602191804219_UpdateModels1.resx">
+      <DependentUpon>202602191804219_UpdateModels1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

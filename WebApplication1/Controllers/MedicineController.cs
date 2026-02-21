@@ -15,10 +15,20 @@ namespace WebApplication1.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Medicines
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Medicines.ToList());
+            var medicines = db.Medicines.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                medicines = medicines.Where(m =>
+                m.MedicineName.Contains(searchString) ||
+                m.MedicineName.Contains(searchString));
+            }
+
+            return View(medicines.ToList());
         }
+
 
         // GET: Medicines/Details/5
         public ActionResult Details(int? id)
@@ -78,7 +88,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MedicineId,MedicineName,Stock,Price,Available,PharmacyId")] Medicine medicine)
+        public ActionResult Edit([Bind(Include = "MedicineId,MedicineName,MedicineCompany,Stock,Price,Available,PharmacyId")] Medicine medicine)
         {
             if (ModelState.IsValid)
             {

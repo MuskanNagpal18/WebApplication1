@@ -1,16 +1,17 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 
 namespace WebApplication1.Models
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext() : base("DefaultConnection")
+        public ApplicationDbContext()
+            : base("ApplicationDbContext")
         {
         }
 
         public DbSet<User> Users { get; set; }
-
-        // 👉 ADD THIS
+        public DbSet<UserMedicine> UserMedicines { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using WebApplication1.Models;
 
@@ -8,36 +9,107 @@ namespace WebApplication1.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // LOGIN (GET)
-        public ActionResult Login()
+        // GET: Users
+        public ActionResult Index()
+        {
+            return View(db.Users.ToList());
+        }
+
+        // GET: Users/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            User user = db.Users.Find(id);
+
+            if (user == null)
+                return HttpNotFound();
+
+            return View(user);
+        }
+
+        // GET: Users/Create
+        public ActionResult Create()
         {
             return View();
         }
 
-        // LOGIN (POST)
+        // POST: Users/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(string email, string password)
+        public ActionResult Create(User user)
         {
-            var user = db.Users
-                .FirstOrDefault(u => u.Email == email && u.PasswordHash == password);
-
-            if (user != null)
+            if (ModelState.IsValid)
             {
-                Session["UserId"] = user.UserId;
-                Session["UserName"] = user.Name;
-
-                return RedirectToAction("Dashboard", "Home");
+                db.Users.Add(user);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
-            ViewBag.Error = "Invalid Email or Password";
-            return View();
+            return View(user);
         }
 
-        public ActionResult Logout()
+        // GET: Users/Edit/5
+        public ActionResult Edit(int? id)
         {
-            Session.Clear();
-            return RedirectToAction("Login");
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            User user = db.Users.Find(id);
+
+            if (user == null)
+                return HttpNotFound();
+
+            return View(user);
+        }
+
+        // POST: Users/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(user);
+        }
+
+        // GET: Users/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            User user = db.Users.Find(id);
+
+            if (user == null)
+                return HttpNotFound();
+
+            return View(user);
+        }
+
+        // POST: Users/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            User user = db.Users.Find(id);
+            db.Users.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+                db.Dispose();
+
+            base.Dispose(disposing);
         }
     }
 }

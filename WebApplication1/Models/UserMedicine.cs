@@ -1,24 +1,21 @@
-﻿
-using System;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication1.Models
 {
-    public class UserMedicine
+    public class User
     {
-        public int UserMedicineId { get; set; }
-
         public int UserId { get; set; }
 
-        public string MedicineName { get; set; }
+        [Required]
+        public string Name { get; set; }
 
-        public string Dosage { get; set; }
+        [Required]
+        public string Email { get; set; }
 
-        public TimeSpan ReminderTime { get; set; }
+        [Required]
+        public string PasswordHash { get; set; }
 
-        public int TotalQuantity { get; set; }
-
-        public int RemainingQuantity { get; set; }
-
-        public string Status { get; set; }
+        public string Role { get; set; }
     }
 }
