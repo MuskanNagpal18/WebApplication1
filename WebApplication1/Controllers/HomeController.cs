@@ -34,26 +34,6 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-
-        public ActionResult Services()
-        {
-            return View();
-        }
-
-        public ActionResult Features()
-        {
-            return View();
-        }
-
-        public ActionResult Privacy()
-        {
-            return View();
-        }
-
-        public ActionResult AdminInfo()
-        {
-            return View();
-        }
-
     }
 }
+}   

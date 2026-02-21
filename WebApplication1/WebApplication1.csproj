@@ -133,6 +133,31 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202602141919594_InitialCreate.cs" />
+    <Compile Include="Migrations\202602141919594_InitialCreate.Designer.cs">
+      <DependentUpon>202602141919594_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602151059486_UpdateModel.cs" />
+    <Compile Include="Migrations\202602151059486_UpdateModel.Designer.cs">
+      <DependentUpon>202602151059486_UpdateModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602151106512_UpdateDatabaseStructure.cs" />
+    <Compile Include="Migrations\202602151106512_UpdateDatabaseStructure.Designer.cs">
+      <DependentUpon>202602151106512_UpdateDatabaseStructure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602151334582_AddMedicineCompany.cs" />
+    <Compile Include="Migrations\202602151334582_AddMedicineCompany.Designer.cs">
+      <DependentUpon>202602151334582_AddMedicineCompany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602151336216_AddMedicineCompany1.cs" />
+    <Compile Include="Migrations\202602151336216_AddMedicineCompany1.Designer.cs">
+      <DependentUpon>202602151336216_AddMedicineCompany1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602151520270_AddMedicineCompany2.cs" />
+    <Compile Include="Migrations\202602151520270_AddMedicineCompany2.Designer.cs">
+      <DependentUpon>202602151520270_AddMedicineCompany2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\202602121739140_InitialCreate.cs" />
     <Compile Include="Migrations\202602121739140_InitialCreate.Designer.cs">
       <DependentUpon>202602121739140_InitialCreate.cs</DependentUpon>
@@ -230,6 +255,10 @@
     <Content Include="Views\Medicines\Edit.cshtml" />
     <Content Include="Views\Medicines\Index.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Home\Services.cshtml" />
+    <Content Include="Views\Home\Features.cshtml" />
+    <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Home\AdminInfo.cshtml" />
     <Content Include="Views\Users\login.cshtml" />
     <Content Include="Views\Users\register.cshtml" />
     <Content Include="Views\Home\AdminInfo.cshtml" />
@@ -266,6 +295,26 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202602141919594_InitialCreate.resx">
+      <DependentUpon>202602141919594_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602151059486_UpdateModel.resx">
+      <DependentUpon>202602151059486_UpdateModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602151106512_UpdateDatabaseStructure.resx">
+      <DependentUpon>202602151106512_UpdateDatabaseStructure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602151334582_AddMedicineCompany.resx">
+      <DependentUpon>202602151334582_AddMedicineCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602151336216_AddMedicineCompany1.resx">
+      <DependentUpon>202602151336216_AddMedicineCompany1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602151520270_AddMedicineCompany2.resx">
+      <DependentUpon>202602151520270_AddMedicineCompany2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202602121739140_InitialCreate.resx">
