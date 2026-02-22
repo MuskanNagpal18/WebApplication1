@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Linq;
+
 using System.Web.Mvc;
-using WebApplication1.Models;
+
 
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+       
 
         public ActionResult Index()
         {
@@ -26,18 +26,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public ActionResult Dashboard()
-        {
-            if (Session["UserId"] == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-            ViewBag.TotalUsers = db.Users.Count();
-            ViewBag.TotalMedicines = db.Medicines.Count();
-            ViewBag.LowStock = db.Medicines.Count(m => m.Stock < 10);
-
-            return View();
-        }
+        
 
         public ActionResult Services()
         {

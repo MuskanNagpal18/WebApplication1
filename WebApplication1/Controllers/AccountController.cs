@@ -51,7 +51,14 @@ namespace WebApplication1.Controllers
                 Session["UserName"] = user.Name;
                 Session["Role"] = user.Role;
 
-                return RedirectToAction("Dashboard", "Home");
+                if (user.Role == "Admin")
+                {
+                    return RedirectToAction("AdminDashboard", "Admin");
+                }
+                else
+                {
+                    return RedirectToAction("UserDashboard", "User");
+                }
             }
 
             ViewBag.Error = "Invalid Email or Password";
