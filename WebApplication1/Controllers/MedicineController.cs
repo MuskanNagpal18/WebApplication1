@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
 
@@ -14,6 +12,17 @@ namespace WebApplication1.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        // 🔐 SECURITY CHECK FOR ADMIN
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["Role"] == null || Session["Role"].ToString() != "Admin")
+            {
+                filterContext.Result = RedirectToAction("Index", "Home");
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
         // GET: Medicines
         public ActionResult Index(string searchString)
         {
@@ -22,26 +31,23 @@ namespace WebApplication1.Controllers
             if (!string.IsNullOrEmpty(searchString))
             {
                 medicines = medicines.Where(m =>
-                m.MedicineName.Contains(searchString) ||
-                m.MedicineName.Contains(searchString));
+                    m.MedicineName.Contains(searchString));
             }
 
             return View(medicines.ToList());
         }
 
-
         // GET: Medicines/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             Medicine medicine = db.Medicines.Find(id);
+
             if (medicine == null)
-            {
                 return HttpNotFound();
-            }
+
             return View(medicine);
         }
 
@@ -52,11 +58,9 @@ namespace WebApplication1.Controllers
         }
 
         // POST: Medicines/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MedicineId,MedicineName,Stock,Price,Available,PharmacyId")] Medicine medicine)
+        public ActionResult Create(Medicine medicine)
         {
             if (ModelState.IsValid)
             {
@@ -72,23 +76,20 @@ namespace WebApplication1.Controllers
         public ActionResult Edit(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             Medicine medicine = db.Medicines.Find(id);
+
             if (medicine == null)
-            {
                 return HttpNotFound();
-            }
+
             return View(medicine);
         }
 
         // POST: Medicines/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MedicineId,MedicineName,MedicineCompany,Stock,Price,Available,PharmacyId")] Medicine medicine)
+        public ActionResult Edit(Medicine medicine)
         {
             if (ModelState.IsValid)
             {
@@ -96,6 +97,7 @@ namespace WebApplication1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(medicine);
         }
 
@@ -103,14 +105,13 @@ namespace WebApplication1.Controllers
         public ActionResult Delete(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             Medicine medicine = db.Medicines.Find(id);
+
             if (medicine == null)
-            {
                 return HttpNotFound();
-            }
+
             return View(medicine);
         }
 
@@ -128,9 +129,8 @@ namespace WebApplication1.Controllers
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {
                 db.Dispose();
-            }
+
             base.Dispose(disposing);
         }
     }

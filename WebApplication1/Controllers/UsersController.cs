@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using WebApplication1.Models;
@@ -9,45 +11,21 @@ namespace WebApplication1.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        // 🔐 ADMIN ONLY ACCESS
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["Role"] == null || Session["Role"].ToString() != "Admin")
+            {
+                filterContext.Result = RedirectToAction("Index", "Home");
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
         // GET: Users
         public ActionResult Index()
         {
             return View(db.Users.ToList());
-        }
-
-        // GET: Users/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            User user = db.Users.Find(id);
-
-            if (user == null)
-                return HttpNotFound();
-
-            return View(user);
-        }
-
-        // GET: Users/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Users/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(User user)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(user);
         }
 
         // GET: Users/Edit/5
@@ -71,7 +49,7 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
