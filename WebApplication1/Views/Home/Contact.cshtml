@@ -1,19 +1,59 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
 
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
+<div class="container mt-5">
 
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
-</main>
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Contact Us</h1>
+        <p class="text-muted">
+            We'd love to hear from you.
+        </p>
+    </div>
+
+    <div class="row">
+
+        <!-- Contact Information -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm p-4 h-100">
+                <h5>Contact Information</h5>
+                <p><strong>Email:</strong> support@medicinesystem.com</p>
+                <p><strong>Phone:</strong> +91 98765 43210</p>
+                <p><strong>Location:</strong> Mumbai, India</p>
+            </div>
+        </div>
+
+        <!-- Contact Form (UI Only) -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm p-4 h-100">
+                <h5>Send a Message</h5>
+
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Your Name" />
+                </div>
+
+                <div class="mb-3">
+                    <input type="email" class="form-control" placeholder="Your Email" />
+                </div>
+
+                <div class="mb-3">
+                    <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                </div>
+
+                <button type="button"
+                        onclick="alert('Message sent successfully!')"
+                        class="btn btn-primary w-100">
+                    Send Message
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center mt-4">
+        <small class="text-muted">
+            © 2026 - Medicine Management System
+        </small>
+    </div>
+
+</div>

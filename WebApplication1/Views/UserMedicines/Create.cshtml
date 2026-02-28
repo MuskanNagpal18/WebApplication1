@@ -1,83 +1,80 @@
 ﻿@model WebApplication1.Models.UserMedicine
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Add Medicine";
 }
 
-<h2>Create</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>UserMedicine</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <div class="card shadow-lg border-0 rounded-4 p-4"
+                 style="background-color: #FAF9F6;">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MedicineName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MedicineName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MedicineName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <!-- Header -->
+                <div class="text-center mb-4">
+                    <div class="mb-2">
+                        <i class="fa-solid fa-capsules fa-2x text-primary"></i>
+                    </div>
+                    <h2 class="fw-bold text-primary">Add New Medicine</h2>
+                    <p class="text-muted small">
+                        Fill in the details to schedule your medicine reminder
+                    </p>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Dosage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Dosage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Dosage, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReminderTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ReminderTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ReminderTime, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <!-- Medicine Name -->
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.MedicineName, new { @class = "form-label fw-semibold" })
+                        @Html.TextBoxFor(m => m.MedicineName,
+                            new { @class = "form-control rounded-3", placeholder = "e.g. Paracetamol" })
+                        @Html.ValidationMessageFor(m => m.MedicineName, "", new { @class = "text-danger small" })
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TotalQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TotalQuantity, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TotalQuantity, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <!-- Dosage -->
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Dosage, new { @class = "form-label fw-semibold" })
+                        @Html.TextBoxFor(m => m.Dosage,
+                            new { @class = "form-control rounded-3", placeholder = "e.g. 1 tablet twice daily" })
+                        @Html.ValidationMessageFor(m => m.Dosage, "", new { @class = "text-danger small" })
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.RemainingQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RemainingQuantity, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RemainingQuantity, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <!-- Reminder Time -->
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.ReminderTime, new { @class = "form-label fw-semibold" })
+                        @Html.TextBoxFor(m => m.ReminderTime,
+                            new { @class = "form-control rounded-3", type = "time" })
+                        @Html.ValidationMessageFor(m => m.ReminderTime, "", new { @class = "text-danger small" })
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <!-- Total Quantity -->
+                    <div class="mb-4">
+                        @Html.LabelFor(m => m.TotalQuantity, new { @class = "form-label fw-semibold" })
+                        @Html.TextBoxFor(m => m.TotalQuantity,
+                            new { @class = "form-control rounded-3", type = "number", min = "1", placeholder = "Enter quantity" })
+                        @Html.ValidationMessageFor(m => m.TotalQuantity, "", new { @class = "text-danger small" })
+                    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <a href="@Url.Action("Index", "UserMedicines")"
+                           class="btn btn-outline-secondary rounded-3 px-4">
+                            Cancel
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-success rounded-3 px-4 shadow-sm">
+                            <i class="fa-solid fa-check me-1"></i>
+                            Save Medicine
+                        </button>
+                    </div>
+                }
             </div>
+
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>

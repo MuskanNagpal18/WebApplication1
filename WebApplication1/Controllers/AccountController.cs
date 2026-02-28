@@ -39,36 +39,32 @@ namespace WebApplication1.Controllers
         // POST: Login
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(string email, string password)
+        public ActionResult Login(User user)
         {
-            var user = db.Users
-                .FirstOrDefault(u => u.Email == email
-                                  && u.PasswordHash == password);
+            var existingUser = db.Users
+                .FirstOrDefault(u => u.Email == user.Email
+                                  && u.PasswordHash == user.PasswordHash);
 
-            if (user != null)
+            if (existingUser != null)
             {
-                Session["UserId"] = user.UserId;
-                Session["UserName"] = user.Name;
-                Session["Role"] = user.Role;
+                Session["UserId"] = existingUser.UserId;
+                Session["UserName"] = existingUser.Name;
+                Session["Role"] = existingUser.Role;
 
-                if (user.Role == "Admin")
-                {
+                if (existingUser.Role == "Admin")
                     return RedirectToAction("AdminDashboard", "Admin");
-                }
-                else
-                {
-                    return RedirectToAction("UserDashboard", "User");
-                }
+
+                return RedirectToAction("Index", "UserMedicines");
             }
 
             ViewBag.Error = "Invalid Email or Password";
-            return View();
+            return View(user);
         }
-
         public ActionResult Logout()
         {
             Session.Clear();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login");
         }
     }
+    
 }

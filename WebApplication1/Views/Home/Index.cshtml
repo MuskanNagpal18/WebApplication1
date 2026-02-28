@@ -22,9 +22,9 @@
     }
     else
     {
-        <h4>Welcome, @Session["Username"]</h4>
+        <h4>Welcome, @Session["UserName"]</h4>
 
-        <a href="@Url.Action("Dashboard", "Home")" class="btn btn-info">
+        <a href="@Url.Action("Index", "UserMedicines")" class="btn btn-info">
             Go to Dashboard
         </a>
 

@@ -27,7 +27,10 @@ namespace WebApplication1.Controllers
 
             return View(medicines);
         }
-
+        public ActionResult UserDashboard()
+        {
+            return RedirectToAction("Index");
+        }
         // ==============================
         // DETAILS
         // ==============================
@@ -41,7 +44,7 @@ namespace WebApplication1.Controllers
             if (userMedicine == null)
                 return HttpNotFound();
 
-            return View(userMedicine);
+            return View("Index");
         }
 
         // ==============================
@@ -65,9 +68,24 @@ namespace WebApplication1.Controllers
             if (Session["UserId"] == null)
                 return RedirectToAction("Login", "Account");
 
+            int userId = (int)Session["UserId"];
+
+            bool exists = db.UserMedicines
+                .Any(m => m.UserId == userId
+                       && m.MedicineName.ToLower().Trim()
+                          == userMedicine.MedicineName.ToLower().Trim());
+
+
+            if (exists)
+            {
+                ModelState.AddModelError("MedicineName",
+                    "This medicine already exists.");
+                return View(userMedicine);
+            }
+
             if (ModelState.IsValid)
             {
-                userMedicine.UserId = (int)Session["UserId"];
+                userMedicine.UserId = userId;
                 userMedicine.RemainingQuantity = userMedicine.TotalQuantity;
                 userMedicine.Status = "Pending";
 
@@ -85,10 +103,16 @@ namespace WebApplication1.Controllers
         // ==============================
         public ActionResult Edit(int? id)
         {
+            if (Session["UserId"] == null)
+                return RedirectToAction("Login", "Account");
+
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            UserMedicine userMedicine = db.UserMedicines.Find(id);
+            int userId = (int)Session["UserId"];
+
+            var userMedicine = db.UserMedicines
+                                 .FirstOrDefault(m => m.UserMedicineId == id && m.UserId == userId);
 
             if (userMedicine == null)
                 return HttpNotFound();
@@ -118,10 +142,16 @@ namespace WebApplication1.Controllers
         // ==============================
         public ActionResult Delete(int? id)
         {
+            if (Session["UserId"] == null)
+                return RedirectToAction("Login", "Account");
+
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            UserMedicine userMedicine = db.UserMedicines.Find(id);
+            int userId = (int)Session["UserId"];
+
+            var userMedicine = db.UserMedicines
+                                 .FirstOrDefault(m => m.UserMedicineId == id && m.UserId == userId);
 
             if (userMedicine == null)
                 return HttpNotFound();
@@ -147,7 +177,13 @@ namespace WebApplication1.Controllers
         // ==============================
         public ActionResult MarkTaken(int id)
         {
-            var medicine = db.UserMedicines.Find(id);
+            if (Session["UserId"] == null)
+                return RedirectToAction("Login", "Account");
+
+            int userId = (int)Session["UserId"];
+
+            var medicine = db.UserMedicines
+                             .FirstOrDefault(m => m.UserMedicineId == id && m.UserId == userId);
 
             if (medicine != null)
             {
@@ -167,7 +203,13 @@ namespace WebApplication1.Controllers
         // ==============================
         public ActionResult MarkMissed(int id)
         {
-            var medicine = db.UserMedicines.Find(id);
+            if (Session["UserId"] == null)
+                return RedirectToAction("Login", "Account");
+
+            int userId = (int)Session["UserId"];
+
+            var medicine = db.UserMedicines
+                             .FirstOrDefault(m => m.UserMedicineId == id && m.UserId == userId);
 
             if (medicine != null)
             {

@@ -2,17 +2,70 @@
     ViewBag.Title = "Features";
 }
 
-<h2 class="mb-3">Key Features</h2>
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Key Features</h1>
+        <p class="text-muted">
+            Powerful tools designed for efficient medicine management.
+        </p>
+    </div>
 
-<ul>
-    <li>User registration and login system</li>
-    <li>Medicine management (Add, Edit, Delete, View)</li>
-    <li>Low stock alerts for medicines</li>
-    <li>Admin dashboard with summary statistics</li>
-    <li>Clean and responsive user interface</li>
-</ul>
+    <div class="row">
 
-<p class="mt-3">
-    This system is designed to make medicine tracking and management efficient and reliable.
-</p>
+        <!-- Authentication -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100 p-4 text-center">
+                <i class="fa-solid fa-user-lock fa-3x text-primary mb-3"></i>
+                <h5>User Registration & Login</h5>
+                <p class="text-muted">
+                    Secure authentication system with session management.
+                </p>
+            </div>
+        </div>
 
+        <!-- CRUD -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100 p-4 text-center">
+                <i class="fa-solid fa-pen-to-square fa-3x text-success mb-3"></i>
+                <h5>Medicine Management</h5>
+                <p class="text-muted">
+                    Add, edit, delete, and view medicines easily.
+                </p>
+            </div>
+        </div>
+
+        <!-- Low Stock -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100 p-4 text-center">
+                <i class="fa-solid fa-triangle-exclamation fa-3x text-danger mb-3"></i>
+                <h5>Low Stock Alerts</h5>
+                <p class="text-muted">
+                    Automatic alerts when medicine stock is running low.
+                </p>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100 p-4 text-center">
+                <i class="fa-solid fa-chart-line fa-3x text-warning mb-3"></i>
+                <h5>Admin Dashboard</h5>
+                <p class="text-muted">
+                    Summary statistics and real-time medicine tracking.
+                </p>
+            </div>
+        </div>
+
+        <!-- Responsive UI -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100 p-4 text-center">
+                <i class="fa-solid fa-mobile-screen fa-3x text-dark mb-3"></i>
+                <h5>Responsive Design</h5>
+                <p class="text-muted">
+                    Clean and responsive interface built with Bootstrap.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
