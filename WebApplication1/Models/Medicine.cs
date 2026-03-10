@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication1.Models
 {
@@ -9,13 +8,17 @@ namespace WebApplication1.Models
 
         [Required(ErrorMessage = "Medicine name is required")]
         [StringLength(100)]
+        [RegularExpression(@"^[a-zA-Z0-9\s]+$",
+            ErrorMessage = "Medicine name can only contain letters and numbers")]
         public string MedicineName { get; set; }
 
         [Required(ErrorMessage = "Company name is required")]
+        [RegularExpression(@"^[a-zA-Z0-9\s]+$",
+            ErrorMessage = "Company name can only contain letters and numbers")]
         public string MedicineCompany { get; set; }
 
         [Required(ErrorMessage = "Stock is required")]
-        [Range(0, 10000, ErrorMessage = "Stock cannot be negative")]
+        [Range(1, 10000, ErrorMessage = "Stock must be greater than or equal to 1")]
         public int Stock { get; set; }
 
         [Required(ErrorMessage = "Price is required")]
@@ -24,6 +27,7 @@ namespace WebApplication1.Models
 
         public bool Available { get; set; }
 
+        [Required(ErrorMessage = "Pharmacy ID is required")]
         public int PharmacyId { get; set; }
     }
 }
