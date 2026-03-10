@@ -2,54 +2,58 @@
     ViewBag.Title = "Admin Dashboard";
 }
 
-<h2 class="text-center mt-4">Admin Dashboard</h2>
-<h5 class="text-center mb-4">Welcome Admin: @Session["UserName"]</h5>
+<div class="container mt-4">
 
-<div class="row text-center">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Admin Dashboard</h2>
 
-    <!-- Total Users -->
-    <div class="col-md-4 mb-4">
-        <div class="card shadow p-3">
-            <div class="card-body">
-                <i class="fa-solid fa-users fa-2x text-primary mb-2"></i>
-                <h5 class="card-title">Total Users</h5>
-                <h3 class="text-primary">@ViewBag.TotalUsers</h3>
-            </div>
-        </div>
+        <h3 class="fw-bold text-primary">
+            Welcome Admin, @Session["UserName"] 👋
+        </h3>
     </div>
 
-    <!-- Total Medicines -->
-    <div class="col-md-4 mb-4">
-        <div class="card shadow p-3">
-            <div class="card-body">
-                <i class="fa-solid fa-capsules fa-2x text-success mb-2"></i>
-                <h5 class="card-title">Total Medicines</h5>
-                <h3 class="text-success">@ViewBag.TotalMedicines</h3>
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 text-center p-4 users-card">
+                <div class="mb-3">
+                    <i class="fa-solid fa-users fa-2x"></i>
+                </div>
+                <h5>Total Users</h5>
+                <h3>@ViewBag.TotalUsers</h3>
             </div>
         </div>
-    </div>
 
-    <!-- Low Stock -->
-    <div class="col-md-4 mb-4">
-        <div class="card shadow p-3">
-            <div class="card-body">
-                <i class="fa-solid fa-triangle-exclamation fa-2x text-danger mb-2"></i>
-                <h5 class="card-title">Low Stock Items</h5>
-                <h3 class="text-danger">@ViewBag.LowStock</h3>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 text-center p-4 medicines-card">
+                <div class="mb-3">
+                    <i class="fa-solid fa-pills fa-2x"></i>
+                </div>
+                <h5>Total Medicines</h5>
+                <h3>@ViewBag.TotalMedicines</h3>
             </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 text-center p-4 lowstock-card">
+                <div class="mb-3">
+                    <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
+                </div>
+                <h5>Low Stock Items</h5>
+                <h3>@ViewBag.LowStock</h3>
+            </div>
+        </div>
+
     </div>
 
-</div>
+    <div class="text-center mt-5">
+        <a href="@Url.Action("Index","Users")" class="btn btn-primary me-3 px-4">
+            <i class="fa-solid fa-user-gear"></i> Manage Users
+        </a>
 
-<hr />
+        <a href="@Url.Action("Index","Medicines")" class="btn btn-success px-4">
+            <i class="fa-solid fa-capsules"></i> Manage Medicines
+        </a>
+    </div>
 
-<div class="text-center mt-4">
-    <a href="@Url.Action("Index", "Users")" class="btn btn-primary me-3">
-        <i class="fa-solid fa-user-gear"></i> Manage Users
-    </a>
-
-    <a href="@Url.Action("Index", "Medicines")" class="btn btn-success">
-        <i class="fa-solid fa-pills"></i> Manage Medicines
-    </a>
 </div>

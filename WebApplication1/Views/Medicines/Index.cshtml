@@ -1,74 +1,120 @@
 ﻿@model IEnumerable<WebApplication1.Models.Medicine>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Medicines";
 }
 
-<h2>Index</h2>
+<div class="container mt-4">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@using (Html.BeginForm("Index", "Medicines", FormMethod.Get))
-{
-    <div class="input-group mb-3">
-        @Html.TextBox("searchString", null, new
-        {
-            @class = "form-control",
-            placeholder = "Search medicine..."
-        })
-        <button class="btn btn-primary" type="submit">Search</button>
+    <!-- Centered Title -->
+    <div class="text-center mb-3">
+        <h2 class="fw-bold fst-italic">
+            Medicine Management
+        </h2>
     </div>
-}
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MedicineName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MedicineCompany)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Stock)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Available)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PharmacyId)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr class="@(item.Stock < 10 ? "table-danger" : "")">
-            <td>
-                @Html.DisplayFor(modelItem => item.MedicineName)
-            </td>
-            <td>@item.MedicineCompany</td>
+    <!-- Add Medicine Button (Next Line) -->
+    <div class="text-center mb-4">
+        <a href="@Url.Action("Create")"
+           class="btn btn-success rounded-pill px-4 shadow-sm">
+            <i class="fa-solid fa-plus"></i> Add Medicine
+        </a>
+    </div>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Stock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Available)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PharmacyId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MedicineId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.MedicineId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.MedicineId })
-            </td>
-        </tr>
-    }
+    <!-- Search Box -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <form method="get" class="d-flex justify-content-center">
+                <input type="text" name="search"
+                       class="form-control w-50 me-2"
+                       placeholder="Search medicine..." />
 
-</table>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover align-middle text-center">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Company</th>
+                        <th>Stock</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MedicineName</td>
+                            <td>@item.MedicineCompany</td>
+
+                            <td>
+                                @if (item.Stock < 10)
+                                {
+                                    <span class="badge rounded-pill bg-danger px-3 py-2">
+                                        @item.Stock (Low)
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge rounded-pill bg-success px-3 py-2">
+                                        @item.Stock
+                                    </span>
+                                }
+                            </td>
+
+                            <td>₹ @item.Price</td>
+
+                            <td>
+                                @if (item.Available)
+                                {
+                                    <span class="badge rounded-pill bg-success px-3 py-2">
+                                        Available
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge rounded-pill bg-secondary px-3 py-2">
+                                        Not Available
+                                    </span>
+                                }
+                            </td>
+
+                            <td>
+                                <a href="@Url.Action("Edit", new { id = item.MedicineId })"
+                                   class="btn btn-sm btn-warning me-1">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+
+                                <a href="@Url.Action("Details", new { id = item.MedicineId })"
+                                   class="btn btn-sm btn-info me-1">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+
+                                <a href="@Url.Action("Delete", new { id = item.MedicineId })"
+                                   class="btn btn-sm btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>

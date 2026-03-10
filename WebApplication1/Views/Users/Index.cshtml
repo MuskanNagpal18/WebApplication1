@@ -1,52 +1,115 @@
 ﻿@model IEnumerable<WebApplication1.Models.User>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Users";
 }
 
-<h2>Index</h2>
+<div class="container mt-4">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Role)
-        </th>
-        <th></th>
-    </tr>
+    <!-- Centered Title -->
+    <div class="text-center mb-3">
+        <h2 class="fw-bold fst-italic">
+            Users Management
+        </h2>
+    </div>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PasswordHash)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
-            </td>
-        </tr>
-    }
+    <!-- Create Button (Next Line Centered) -->
+    <div class="text-center mb-4">
+        <a href="@Url.Action("Create")"
+           class="btn btn-primary rounded-pill px-4 shadow-sm">
+            <i class="fa-solid fa-plus"></i> Create New
+        </a>
+    </div>
 
-</table>
+    <!-- Search + Filter Bar -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <form method="get" class="row justify-content-center">
+
+                <div class="col-md-5">
+                    <input type="text" name="search"
+                           class="form-control"
+                           placeholder="Search by name or email..." />
+                </div>
+
+                <div class="col-md-3">
+                    <select name="role" class="form-select">
+                        <option value="">All Roles</option>
+                        <option value="Admin">Admin</option>
+                        <option value="User">User</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success w-100">
+                        <i class="fa-solid fa-magnifying-glass"></i> Search
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover align-middle text-center">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Email</td>
+
+                            <td>
+                                @if (item.Role == "Admin")
+                                {
+                                    <span class="badge rounded-pill bg-danger px-3 py-2">
+                                        Admin
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge rounded-pill bg-success px-3 py-2">
+                                        User
+                                    </span>
+                                }
+                            </td>
+
+                            <td>
+                                <a href="@Url.Action("Edit", new { id = item.UserId })"
+                                   class="btn btn-sm btn-warning me-1">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+
+                                <a href="@Url.Action("Details", new { id = item.UserId })"
+                                   class="btn btn-sm btn-info me-1">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+
+                                <a href="@Url.Action("Delete", new { id = item.UserId })"
+                                   class="btn btn-sm btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>

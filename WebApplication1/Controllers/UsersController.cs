@@ -22,13 +22,67 @@ namespace WebApplication1.Controllers
             base.OnActionExecuting(filterContext);
         }
 
+        // =========================
         // GET: Users
-        public ActionResult Index()
+        // =========================
+        public ActionResult Index(string search)
         {
-            return View(db.Users.ToList());
+            var users = db.Users.AsQueryable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                users = users.Where(u =>
+                    u.Name.Contains(search) ||
+                    u.Email.Contains(search));
+            }
+
+            return View(users.ToList());
         }
 
+        // =========================
+        // GET: Users/Details/5
+        // =========================
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            User user = db.Users.Find(id);
+
+            if (user == null)
+                return HttpNotFound();
+
+            return View(user);
+        }
+
+        // =========================
+        // GET: Users/Create
+        // =========================
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // =========================
+        // POST: Users/Create
+        // =========================
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(user);
+        }
+
+        // =========================
         // GET: Users/Edit/5
+        // =========================
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -42,7 +96,9 @@ namespace WebApplication1.Controllers
             return View(user);
         }
 
+        // =========================
         // POST: Users/Edit/5
+        // =========================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(User user)
@@ -57,7 +113,9 @@ namespace WebApplication1.Controllers
             return View(user);
         }
 
+        // =========================
         // GET: Users/Delete/5
+        // =========================
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -71,17 +129,27 @@ namespace WebApplication1.Controllers
             return View(user);
         }
 
+        // =========================
         // POST: Users/Delete/5
+        // =========================
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+
+            if (user != null)
+            {
+                db.Users.Remove(user);
+                db.SaveChanges();
+            }
+
             return RedirectToAction("Index");
         }
 
+        // =========================
+        // Dispose
+        // =========================
         protected override void Dispose(bool disposing)
         {
             if (disposing)

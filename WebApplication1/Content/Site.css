@@ -1,30 +1,39 @@
-﻿/* Set padding to keep content from hitting the edges */
-.body-content {
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-/* Light background for entire website */
+﻿/* Body Background */
 body {
-    background-color: #f8f9fa; /* light grey */
+    background-color: #f4f6f9;
 }
-/* Dashboard icons */
-.dashboard-icon {
-    font-size: 40px;
-    opacity: 0.8;
+
+/* Dashboard colored cards */
+.users-card {
+    background-color: #0d6efd !important;
+    color: white !important;
+}
+
+.medicines-card {
+    background-color: #198754 !important;
+    color: white !important;
+}
+
+.lowstock-card {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+    /* Make icons white */
+    .users-card i,
+    .medicines-card i,
+    .lowstock-card i {
+        color: white !important;
+    }
+    /* Hover Effect */
+    .users-card:hover,
+    .medicines-card:hover,
+    .lowstock-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+        transition: 0.3s ease;
+    }
+.table tbody tr:hover {
+    background-color: #f0f6ff;
+    transition: 0.2s ease;
 }
