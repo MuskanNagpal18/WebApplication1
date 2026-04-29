@@ -1,0 +1,161 @@
+﻿
+@model List<WebApplication1.Models.UserMedicine>
+
+@{
+    ViewBag.Title = "User Dashboard";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm p-4">
+        <div class="text-center mb-4">
+
+            <h3 class="fw-semibold text-secondary">
+                User Dashboard
+            </h3>
+
+            <h1 class="fw-bold fst-italic text-dark">
+                Welcome, @Session["UserName"]
+            </h1>
+
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <div class="card bg-success text-white text-center p-3 shadow-sm">
+                    <h5>
+                        <i class="fa-solid fa-pills me-2"></i>
+                        Total Medicines
+                    </h5>
+                    <h3>@Model.Count()</h3>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card bg-warning text-dark text-center p-3 shadow-sm">
+                    <h5>
+                        <i class="fa-solid fa-hourglass-half me-2"></i>
+                        Pending
+                    </h5>
+                    <h3>@Model.Count(m => m.Status == "Pending")</h3>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card bg-danger text-white text-center p-3 shadow-sm">
+                    <h5>
+                        <i class="fa-solid fa-xmark-circle me-2"></i>
+                        Missed
+                    </h5>
+                    <h3>@Model.Count(m => m.Status == "Missed")</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-dark text-white text-center p-3 shadow-sm">
+                    <h5>
+                        <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                        Low Stock
+                    </h5>
+                    <h3>@Model.Count(m => m.RemainingQuantity <= 5)</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Button -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">Your Medicines</h5>
+            <a href="@Url.Action("Create", "UserMedicines")"
+               class="btn btn-primary">
+                <i class="fa fa-plus"></i> Add Medicine
+            </a>
+        </div>
+
+        <!-- Table -->
+        @if (!Model.Any())
+        {
+            <div class="text-center p-5">
+                <i class="fa-solid fa-pills fa-3x text-muted mb-3"></i>
+
+                <h5 class="text-muted">
+                    You haven't added any medicines yet 💊
+                </h5>
+
+                <a href="@Url.Action("Create", "UserMedicines")"
+                   class="btn btn-primary mt-3">
+                    + Add Your First Medicine
+                </a>
+            </div>
+        }
+        else
+        {
+            <table class="table table-hover table-striped align-middle shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Medicine</th>
+                        <th>Dosage</th>
+                        <th>Reminder Time</th>
+                        <th>Remaining</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MedicineName</td>
+                            <td>@item.Dosage</td>
+                            <td>@item.ReminderTime.ToString(@"hh\:mm")</td>
+
+                            <td>
+                                @if (item.RemainingQuantity <= 5)
+                                {
+                                    <span class="text-danger fw-bold">
+                                        @item.RemainingQuantity (Low!)
+                                    </span>
+                                }
+                                else
+                                {
+                                    @item.RemainingQuantity
+                                }
+                            </td>
+
+                            <td>
+                                @if (item.Status == "Taken")
+                                {
+                                    <span class="badge bg-success px-3 py-2">✔ Taken</span>
+                                }
+                                else if (item.Status == "Missed")
+                                {
+                                    <span class="badge bg-danger px-3 py-2">✖ Missed</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark px-3 py-2">⏳ Pending</span>
+                                }
+                            </td>
+
+                            <td>
+                                <a href="@Url.Action("MarkTaken", "UserMedicines", new { id = item.UserMedicineId })"
+                                   class="btn btn-sm btn-outline-success me-1">✔ Taken</a>
+
+                                <a href="@Url.Action("MarkMissed", "UserMedicines", new { id = item.UserMedicineId })"
+                                   class="btn btn-sm btn-outline-danger">✖ Missed</a>
+
+                                <a href="@Url.Action("Edit", "UserMedicines", new { id = item.UserMedicineId })"
+                                   class="btn btn-sm btn-primary">Edit</a>
+
+                                <a href="@Url.Action("Delete", "UserMedicines", new { id = item.UserMedicineId })"
+                                   class="btn btn-sm btn-dark">Delete</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        }
+
+    </div>
+</div>

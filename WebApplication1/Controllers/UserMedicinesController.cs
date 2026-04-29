@@ -44,7 +44,7 @@ namespace WebApplication1.Controllers
             if (userMedicine == null)
                 return HttpNotFound();
 
-            return View("Index");
+            return View(userMedicine);
         }
 
         // ==============================

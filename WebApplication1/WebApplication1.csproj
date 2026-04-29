@@ -246,6 +246,14 @@
     <Content Include="Views\UserMedicines\Delete.cshtml" />
     <Content Include="Views\UserMedicines\Details.cshtml" />
     <Content Include="Views\UserMedicines\UserDashboard.cshtml" />
+    <Content Include="Views\Shared\shared\Error.cshtml" />
+    <Content Include="Views\Shared\shared\_Layout.cshtml" />
+    <Content Include="Views\UserMedicines\usermedicines\Create.cshtml" />
+    <Content Include="Views\UserMedicines\usermedicines\Delete.cshtml" />
+    <Content Include="Views\UserMedicines\usermedicines\Details.cshtml" />
+    <Content Include="Views\UserMedicines\usermedicines\Edit.cshtml" />
+    <Content Include="Views\UserMedicines\usermedicines\Index.cshtml" />
+    <Content Include="Views\UserMedicines\usermedicines\UserDashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

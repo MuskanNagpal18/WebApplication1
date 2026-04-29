@@ -1,0 +1,120 @@
+﻿@model IEnumerable<WebApplication1.Models.Medicine>
+
+@{
+    ViewBag.Title = "Medicines";
+}
+
+<div class="container mt-4">
+
+    <!-- Centered Title -->
+    <div class="text-center mb-3">
+        <h2 class="fw-bold fst-italic">
+            Medicine Management
+        </h2>
+    </div>
+
+    <!-- Add Medicine Button (Next Line) -->
+    <div class="text-center mb-4">
+        <a href="@Url.Action("Create")"
+           class="btn btn-success rounded-pill px-4 shadow-sm">
+            <i class="fa-solid fa-plus"></i> Add Medicine
+        </a>
+    </div>
+
+    <!-- Search Box -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <form method="get" class="d-flex justify-content-center">
+                <input type="text" name="search"
+                       class="form-control w-50 me-2"
+                       placeholder="Search medicine..." />
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover align-middle text-center">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Company</th>
+                        <th>Stock</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MedicineName</td>
+                            <td>@item.MedicineCompany</td>
+
+                            <td>
+                                @if (item.Stock < 10)
+                                {
+                                    <span class="badge rounded-pill bg-danger px-3 py-2">
+                                        @item.Stock (Low)
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge rounded-pill bg-success px-3 py-2">
+                                        @item.Stock
+                                    </span>
+                                }
+                            </td>
+
+                            <td>₹ @item.Price</td>
+
+                            <td>
+                                @if (item.Available)
+                                {
+                                    <span class="badge rounded-pill bg-success px-3 py-2">
+                                        Available
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge rounded-pill bg-secondary px-3 py-2">
+                                        Not Available
+                                    </span>
+                                }
+                            </td>
+
+                            <td>
+                                <a href="@Url.Action("Edit", new { id = item.MedicineId })"
+                                   class="btn btn-sm btn-warning me-1">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+
+                                <a href="@Url.Action("Details", new { id = item.MedicineId })"
+                                   class="btn btn-sm btn-info me-1">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+
+                                <a href="@Url.Action("Delete", new { id = item.MedicineId })"
+                                   class="btn btn-sm btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>

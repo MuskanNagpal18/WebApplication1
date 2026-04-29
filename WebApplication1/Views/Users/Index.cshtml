@@ -6,14 +6,12 @@
 
 <div class="container mt-4">
 
-    <!-- Centered Title -->
+    <!-- Title -->
     <div class="text-center mb-3">
-        <h2 class="fw-bold fst-italic">
-            Users Management
-        </h2>
+        <h2 class="fw-bold fst-italic">Users Management</h2>
     </div>
 
-    <!-- Create Button (Next Line Centered) -->
+    <!-- Create Button -->
     <div class="text-center mb-4">
         <a href="@Url.Action("Create")"
            class="btn btn-primary rounded-pill px-4 shadow-sm">
@@ -21,25 +19,30 @@
         </a>
     </div>
 
-    <!-- Search + Filter Bar -->
+    <!-- Search + Filter -->
     <div class="card shadow-sm border-0 mb-4">
         <div class="card-body">
             <form method="get" class="row justify-content-center">
 
+                <!-- Search -->
                 <div class="col-md-5">
-                    <input type="text" name="search"
+                    <input type="text"
+                           name="search"
+                           value="@Request["search"]"
                            class="form-control"
                            placeholder="Search by name or email..." />
                 </div>
 
+                <!-- Role Filter -->
                 <div class="col-md-3">
                     <select name="role" class="form-select">
                         <option value="">All Roles</option>
-                        <option value="Admin">Admin</option>
-                        <option value="User">User</option>
+                        <option value="Admin" @(Request["role"] == "Admin" ? "selected" : "")>Admin</option>
+                        <option value="User" @(Request["role"] == "User" ? "selected" : "")>User</option>
                     </select>
                 </div>
 
+                <!-- Button -->
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-success w-100">
                         <i class="fa-solid fa-magnifying-glass"></i> Search
@@ -66,44 +69,55 @@
                 </thead>
 
                 <tbody>
-                    @foreach (var item in Model)
+                    @if (!Model.Any())
                     {
                         <tr>
-                            <td>@item.Name</td>
-                            <td>@item.Email</td>
-
-                            <td>
-                                @if (item.Role == "Admin")
-                                {
-                                    <span class="badge rounded-pill bg-danger px-3 py-2">
-                                        Admin
-                                    </span>
-                                }
-                                else
-                                {
-                                    <span class="badge rounded-pill bg-success px-3 py-2">
-                                        User
-                                    </span>
-                                }
-                            </td>
-
-                            <td>
-                                <a href="@Url.Action("Edit", new { id = item.UserId })"
-                                   class="btn btn-sm btn-warning me-1">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-
-                                <a href="@Url.Action("Details", new { id = item.UserId })"
-                                   class="btn btn-sm btn-info me-1">
-                                    <i class="fa-solid fa-eye"></i>
-                                </a>
-
-                                <a href="@Url.Action("Delete", new { id = item.UserId })"
-                                   class="btn btn-sm btn-danger">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
+                            <td colspan="4" class="text-muted">
+                                No users found
                             </td>
                         </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Email</td>
+
+                                <td>
+                                    @if (item.Role == "Admin")
+                                    {
+                                        <span class="badge rounded-pill bg-danger px-3 py-2">
+                                            Admin
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge rounded-pill bg-success px-3 py-2">
+                                            User
+                                        </span>
+                                    }
+                                </td>
+
+                                <td>
+                                    <a href="@Url.Action("Edit", new { id = item.UserId })"
+                                       class="btn btn-sm btn-warning me-1">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+
+                                    <a href="@Url.Action("Details", new { id = item.UserId })"
+                                       class="btn btn-sm btn-info me-1">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+
+                                    <a href="@Url.Action("Delete", new { id = item.UserId })"
+                                       class="btn btn-sm btn-danger">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
                     }
                 </tbody>
 

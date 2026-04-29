@@ -4,55 +4,56 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="container mt-4">
 
-<div>
-    <h4>Medicine</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MedicineName)
-        </dt>
+    <h2 class="text-center fw-bold">Medicine Details 💊</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.MedicineName)
-        </dd>
+    <div class="card shadow-lg p-4 mt-3">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Stock)
-        </dt>
+        <dl class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.Stock)
-        </dd>
+            <dt class="col-sm-3">Medicine Name</dt>
+            <dd class="col-sm-9">@Model.MedicineName</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            <!-- ✅ ADDED THIS (IMPORTANT) -->
+            <dt class="col-sm-3">Company</dt>
+            <dd class="col-sm-9">@Model.MedicineCompany</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+            <dt class="col-sm-3">Stock</dt>
+            <dd class="col-sm-9">@Model.Stock</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Available)
-        </dt>
+            <dt class="col-sm-3">Price</dt>
+            <dd class="col-sm-9">₹ @Model.Price</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Available)
-        </dd>
+            <dt class="col-sm-3">Available</dt>
+            <dd class="col-sm-9">
+                @if (Model.Available)
+                {
+                    <span class="badge bg-success">Yes</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">No</span>
+                }
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PharmacyId)
-        </dt>
+            <dt class="col-sm-3">Pharmacy ID</dt>
+            <dd class="col-sm-9">@Model.PharmacyId</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PharmacyId)
-        </dd>
+        </dl>
 
-    </dl>
+        <div class="text-center mt-3">
+            <a href="@Url.Action("Edit", new { id = Model.MedicineId })"
+               class="btn btn-warning me-2">
+                Edit
+            </a>
+
+            <a href="@Url.Action("Index")"
+               class="btn btn-secondary">
+                Back to List
+            </a>
+        </div>
+
+    </div>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MedicineId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

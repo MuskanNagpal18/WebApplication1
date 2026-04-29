@@ -1,0 +1,65 @@
+﻿@model WebApplication1.Models.User
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+
+    <div class="card shadow-lg border-0 rounded-4 p-4"
+         style="width: 420px; background-color: #FAF9F6;">
+
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-dark">
+                <i class="fa-solid fa-user-plus text-success me-2"></i>
+                Register
+            </h2>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                @Html.TextBoxFor(m => m.Name,
+                    new { @class = "form-control rounded-3", placeholder = "Enter your name" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                @Html.TextBoxFor(m => m.Email,
+                    new { @class = "form-control rounded-3", placeholder = "Enter your email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Password</label>
+                @Html.PasswordFor(m => m.PasswordHash,
+                    new { @class = "form-control rounded-3", placeholder = "Create a password" })
+                @Html.ValidationMessageFor(m => m.PasswordHash, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-success rounded-3">
+                    <i class="fa-solid fa-user-check me-1"></i> Register
+                </button>
+            </div>
+
+            <div class="text-center mt-3">
+                <small>
+                    Already have an account?
+                    <a href="@Url.Action("Login", "Account")" class="text-primary fw-semibold">
+                        Login
+                    </a>
+                </small>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

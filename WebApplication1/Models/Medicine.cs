@@ -8,13 +8,13 @@ namespace WebApplication1.Models
 
         [Required(ErrorMessage = "Medicine name is required")]
         [StringLength(100)]
-        [RegularExpression(@"^[a-zA-Z0-9\s]+$",
-            ErrorMessage = "Medicine name can only contain letters and numbers")]
+        [RegularExpression(@"^[a-zA-Z0-9\s\.\-]+$",
+ ErrorMessage = "Only letters, numbers, space, dot and dash allowed")]
         public string MedicineName { get; set; }
 
         [Required(ErrorMessage = "Company name is required")]
-        [RegularExpression(@"^[a-zA-Z0-9\s]+$",
-            ErrorMessage = "Company name can only contain letters and numbers")]
+        [RegularExpression(@"^[a-zA-Z0-9\s\.\-]+$",
+ ErrorMessage = "Only letters, numbers, space, dot and dash allowed")]
         public string MedicineCompany { get; set; }
 
         [Required(ErrorMessage = "Stock is required")]

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="text-center mt-5">
+    <h1>Medicine Tracker & Pharmacy Management System</h1>
+    <p class="lead">
+        Track medicines & Manage stock.
+    </p>
+
+    <br />
+
+    @if (Session["UserId"] == null)
+    {
+        <a href="@Url.Action("Login", "Account")" class="btn btn-primary btn-lg">
+            Login
+        </a>
+
+        <a href="@Url.Action("Register", "Account")" class="btn btn-success btn-lg">
+            Register
+        </a>
+    }
+    else
+    {
+        <h4>Welcome, @Session["UserName"]</h4>
+
+        <a href="@Url.Action("Index", "UserMedicines")" class="btn btn-info">
+            Go to Dashboard
+        </a>
+
+        <a href="@Url.Action("Logout", "Account")" class="btn btn-danger">
+            Logout
+        </a>
+    }
+</div>

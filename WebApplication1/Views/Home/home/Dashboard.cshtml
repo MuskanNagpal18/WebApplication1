@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Admin Dashboard";
+}
+
+<h2 class="mb-2">Admin Dashboard</h2>
+<p class="text-muted mb-4">
+    Welcome Admin! Manage users, medicines, and monitor stock status from this dashboard.
+</p>
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-4">
+            <div class="card-body">
+                <h4><i class="fa-solid fa-users me-2"></i> Total Users</h4>
+                <h2>@ViewBag.TotalUsers</h2>
+            </div>
+            <div class="card-footer text-center">
+                <a href="/Users" class="text-white">Manage Users</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-4">
+            <div class="card-body">
+                <h4><i class="fa-solid fa-pills me-2"></i> Total Medicines</h4>
+                <h2>@ViewBag.TotalMedicines</h2>
+            </div>
+            <div class="card-footer text-center">
+                <a href="/Medicines" class="text-white">Manage Medicines</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-danger mb-4">
+            <div class="card-body">
+                <h4><i class="fa-solid fa-triangle-exclamation me-2"></i> Low Stock Items</h4>
+                <h2>@ViewBag.LowStock</h2>
+                <small>Stock less than 10</small>
+            </div>
+        </div>
+    </div>
+
+</div>

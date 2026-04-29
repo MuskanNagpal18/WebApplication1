@@ -1,0 +1,80 @@
+﻿@model WebApplication1.Models.UserMedicine
+
+@{
+    ViewBag.Title = "Add Medicine";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-lg border-0 rounded-4 p-4"
+                 style="background-color: #FAF9F6;">
+
+                <!-- Header -->
+                <div class="text-center mb-4">
+                    <div class="mb-2">
+                        <i class="fa-solid fa-capsules fa-2x text-primary"></i>
+                    </div>
+                    <h2 class="fw-bold text-primary">Add New Medicine</h2>
+                    <p class="text-muted small">
+                        Fill in the details to schedule your medicine reminder
+                    </p>
+                </div>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <!-- Medicine Name -->
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.MedicineName, new { @class = "form-label fw-semibold" })
+                        @Html.TextBoxFor(m => m.MedicineName,
+                            new { @class = "form-control rounded-3", placeholder = "e.g. Paracetamol" })
+                        @Html.ValidationMessageFor(m => m.MedicineName, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <!-- Dosage -->
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Dosage, new { @class = "form-label fw-semibold" })
+                        @Html.TextBoxFor(m => m.Dosage,
+                            new { @class = "form-control rounded-3", placeholder = "e.g. 1 tablet twice daily" })
+                        @Html.ValidationMessageFor(m => m.Dosage, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <!-- Reminder Time -->
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.ReminderTime, new { @class = "form-label fw-semibold" })
+                        @Html.TextBoxFor(m => m.ReminderTime,
+                            new { @class = "form-control rounded-3", type = "time" })
+                        @Html.ValidationMessageFor(m => m.ReminderTime, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <!-- Total Quantity -->
+                    <div class="mb-4">
+                        @Html.LabelFor(m => m.TotalQuantity, new { @class = "form-label fw-semibold" })
+                        @Html.TextBoxFor(m => m.TotalQuantity,
+                            new { @class = "form-control rounded-3", type = "number", min = "1", placeholder = "Enter quantity" })
+                        @Html.ValidationMessageFor(m => m.TotalQuantity, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <a href="@Url.Action("Index", "UserMedicines")"
+                           class="btn btn-outline-secondary rounded-3 px-4">
+                            Cancel
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-success rounded-3 px-4 shadow-sm">
+                            <i class="fa-solid fa-check me-1"></i>
+                            Save Medicine
+                        </button>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

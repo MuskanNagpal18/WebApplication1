@@ -25,20 +25,22 @@ namespace WebApplication1.Controllers
         // =========================
         // GET: Users
         // =========================
-        public ActionResult Index(string search)
+        public ActionResult Index(string search, string role)
         {
             var users = db.Users.AsQueryable();
 
             if (!string.IsNullOrEmpty(search))
             {
-                users = users.Where(u =>
-                    u.Name.Contains(search) ||
-                    u.Email.Contains(search));
+                users = users.Where(u => u.Name.Contains(search) || u.Email.Contains(search));
+            }
+
+            if (!string.IsNullOrEmpty(role))
+            {
+                users = users.Where(u => u.Role == role);
             }
 
             return View(users.ToList());
         }
-
         // =========================
         // GET: Users/Details/5
         // =========================

@@ -2,34 +2,59 @@
     ViewBag.Title = "Home";
 }
 
-<div class="text-center mt-5">
-    <h1>Medicine Tracker & Pharmacy Management System</h1>
-    <p class="lead">
-        Track medicines & Manage stock.
+<div class="container mt-5 text-center">
+
+    <!-- Title -->
+    <h1 class="fw-bold display-5">
+        Medicine Tracker & Pharmacy System 💊
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="lead text-muted">
+        Manage medicines, track doses, and monitor stock easily.
     </p>
 
-    <br />
+    <hr class="w-50 mx-auto mb-4" />
 
     @if (Session["UserId"] == null)
     {
-        <a href="@Url.Action("Login", "Account")" class="btn btn-primary btn-lg">
-            Login
-        </a>
+        <!-- Guest Buttons -->
+        <div class="mt-3">
+            <a href="@Url.Action("Login", "Account")"
+               class="btn btn-primary btn-lg px-4 me-2 shadow-sm">
+                Login
+            </a>
 
-        <a href="@Url.Action("Register", "Account")" class="btn btn-success btn-lg">
-            Register
-        </a>
+            <a href="@Url.Action("Register", "Account")"
+               class="btn btn-success btn-lg px-4 shadow-sm">
+                Register
+            </a>
+        </div>
     }
     else
     {
-        <h4>Welcome, @Session["UserName"]</h4>
+        <!-- Logged-in User -->
+        <div class="mt-4">
 
-        <a href="@Url.Action("Index", "UserMedicines")" class="btn btn-info">
-            Go to Dashboard
-        </a>
+            <h4 class="fw-semibold">
+                Welcome, <span class="text-primary">@Session["UserName"]</span> 👋
+            </h4>
 
-        <a href="@Url.Action("Logout", "Account")" class="btn btn-danger">
-            Logout
-        </a>
+            <div class="mt-3">
+
+                <a href="@Url.Action("Index", "UserMedicines")"
+                   class="btn btn-info btn-lg px-4 me-2 shadow-sm">
+                    Go to Dashboard
+                </a>
+
+                <a href="@Url.Action("Logout", "Account")"
+                   class="btn btn-danger btn-lg px-4 shadow-sm">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
     }
+
 </div>

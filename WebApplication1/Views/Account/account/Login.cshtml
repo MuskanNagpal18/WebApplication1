@@ -1,0 +1,42 @@
+﻿@model WebApplication1.Models.User
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+
+    <div class="card shadow-lg border-0 rounded-4 p-4" style="width: 400px; background-color: #FFFFF0;">
+
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-dark">
+                <i class="fa-solid fa-user-lock text-primary me-2"></i>
+                Login
+            </h2>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter your email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Password</label>
+                @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control", placeholder = "Enter your password" })
+                @Html.ValidationMessageFor(m => m.PasswordHash, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary rounded-3">
+                    <i class="fa-solid fa-right-to-bracket me-1"></i> Login
+                </button>
+            </div>
+        }
+    </div>
+
+</div>
